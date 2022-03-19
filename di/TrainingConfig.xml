@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:c="http://www.springframework.org/schema/c"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+			http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-3.2.xsd
+			http://www.springframework.org/schema/tx
+			http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+
+		<bean id="coreJavaCourse" class="com.mikadosolutions.training.spring.di.CoreJavaCourse">
+			<constructor-arg value="80" />
+			<constructor-arg>
+				<list>
+					<value>OOPS</value>
+					<value>Threads</value>
+					<value>IO</value>
+					<value>Collections</value>
+				</list>
+			</constructor-arg>
+			<constructor-arg value="10000" />
+		</bean>
+
+		<!-- Identifying parameters by type
+		<bean id="coreJavaCourse" class="com.mikadosolutions.training.spring.di.CoreJavaCourse">
+			<constructor-arg index="1" value="80" />
+			<constructor-arg>
+				<list>
+					<value>OOPS</value>
+					<value>Threads</value>
+					<value>IO</value>
+					<value>Collections</value>
+				</list>
+			</constructor-arg>
+			<constructor-arg index="2" value="10000" />
+		</bean>
+		-->
+
+		<!-- Identifying parameters by type
+		<bean id="coreJavaCourse" class="com.mikadosolutions.training.spring.di.CoreJavaCourse">
+			<constructor-arg type="int" value="80" />
+			<constructor-arg>
+				<list>
+					<value>OOPS</value>
+					<value>Threads</value>
+					<value>IO</value>
+					<value>Collections</value>
+				</list>
+			</constructor-arg>
+			<constructor-arg type="double" value="10000" />
+		</bean>
+		-->
+
+		<bean id="advancedJavaCourse" class="com.mikadosolutions.training.spring.di.AdvancedJavaCourse">
+			<constructor-arg value="80" />
+			<constructor-arg>
+				<list>
+					<value>RMI</value>
+					<value>Servlets</value>
+					<value>JDBC</value>
+					<value>JSP</value>
+				</list>
+			</constructor-arg>
+			<constructor-arg value="10000" />
+		</bean>
+
+		<!-- You can use c namespace on name or index -->
+		<!-- But to use name you should compile using debug mode (-g) -->
+		<!--
+		<bean id="advancedJavaCourse" class="com.mikadosolutions.training.spring.di.AdvancedJavaCourse"
+			c:courseDuration="80" c:courseFees="10000">
+			<constructor-arg>
+				<list>
+					<value>RMI</value>
+					<value>Servlets</value>
+					<value>Jdbc</value>
+					<value>JSP</value>
+				</list>
+			</constructor-arg>
+		</bean>
+		-->
+
+		<!-- Using index -->
+		<!--
+		<bean id="advancedJavaCourse" class="com.mikadosolutions.training.spring.di.AdvancedJavaCourse"
+			c:_1="80" c:_2="10000">
+			<constructor-arg>
+				<list>
+					<value>RMI</value>
+					value>Servlets</value>
+					<value>Jdbc</value>
+					<value>JSP</value>
+				</list>
+			</constructor-arg>
+		-->
+
+		<bean id="struts2Course" class="com.mikadosolutions.training.spring.di.Struts2Course">
+			<property name="courseDuration" value="40" />
+			<property name="courseContents">
+				<list>
+					<value>Interceptors</value>
+					<value>Validation</value>
+					<value>I18N</value>
+					<value>CustomTags</value>
+				</list>
+			</property>
+			<property name="courseFees" value="6000" />
+		</bean>
+
+		<bean id="hibernateCourse" class="com.mikadosolutions.training.spring.di.HibernateCourse">
+			<property name="courseDuration" value="40" />
+			<property name="courseContents">
+				<list>
+					<value>Mapping Documents</value>
+					<value>Persistent Objects</value>
+					<value>HQL</value>
+					<value>Transactions</value>
+				</list>
+			</property>
+			<property name="courseFees" value="6000" />
+		</bean>
+
+		<bean id="ejb3Course" class="com.mikadosolutions.training.spring.di.EJB3Course"
+			p:courseDuration="40" p:courseFees="6000">
+			<property name="courseContents">
+				<list>
+					<value>SessionBeans</value>
+					<value>MDBS</value>
+					<value>JPA</value>
+				</list>
+			</property>
+		</bean>
+
+		<bean id="dotNetCourse" class="com.mikadosolutions.training.spring.di.DotNetCourse"
+			p:courseDuration="150" p:courseFees="18000">
+			<property name="courseContents">
+				<list>
+					<value>C#</value>
+					<value>ADO.net</value>
+					<value>ASP.net</value>
+				</list>
+			</property>
+		</bean>
+
+		<bean id="androidCourse" class="com.mikadosolutions.training.spring.di.AndroidCourse"
+			p:courseDuration="120" p:courseFees="12000">
+			<property name="courseContents">
+				<list>
+					<value>Activities</value>
+					<value>Services</value>
+					<value>BroadcastReceivers</value>
+					<value>ContentProviders</value>
+				</list>
+			</property>
+		</bean>
+
+		<bean id="sanjay" class="com.mikadosolutions.training.spring.di.JavaTrainer">
+			<constructor-arg value="Sanjay Makhija" />
+			<constructor-arg>
+				<set>
+					<value>Core Java</value>
+					<value>Advanced Java</value>
+					<value>Struts2</value>
+					<value>Spring</value>
+					<value>EJB</value>
+				</set>
+			</constructor-arg>
+		</bean>
+
+		<bean id="prafull" class="com.mikadosolutions.training.spring.di.JavaTrainer">
+			<constructor-arg value="Prafull Vernekar" />
+			<constructor-arg>
+				<set>
+					<value>Core Java</value>
+					<value>Advanced Java</value>
+					<value>Hibernate</value>
+					<value>EJB</value>
+				</set>
+			</constructor-arg>
+		</bean>
+
+		<bean id="pankaj" class="com.mikadosolutions.training.spring.di.DotNetTrainer">
+			<property name="name" value="Pankaj Upadhya" />
+			<property name="specialties">
+				<set>
+					<value>C#</value>
+					<value>ADO</value>
+					<value>ASP</value>
+				</set>
+			</property>
+		</bean>
+
+		<bean id="ajay" class="com.mikadosolutions.training.spring.di.AndroidTrainer"
+			p:name="Ajay Bhosekar">
+			<property name="specialties">
+				<set>
+					<value>Android</value>
+				</set>
+			</property>
+		</bean>
+
+		<!-- <bean id = "mikado" class = "com.mikadosolutions.training.spring.di.MikadoSolutions"
+		  factory-method = "getMikadoSolutions" primary="true" autowire="byType"> -->
+		<bean id="mikado" class="com.mikadosolutions.training.spring.di.MikadoSolutions"
+			factory-method="getMikadoSolutions">
+			<property name="trainers">
+				<list>
+					<ref bean="sanjay" />
+					<ref bean="prafull" />
+					<ref bean="pankaj" />
+					<ref bean="pankaj" />
+					<ref bean="ajay" />
+				</list>
+			</property>
+			<property name="courses">
+				<set>
+					<ref bean="coreJavaCourse" />
+					<ref bean="advancedJavaCourse" />
+					<ref bean="struts2Course" />
+					<ref bean="hibernateCourse" />
+					<ref bean="ejb3Course" />
+					<ref bean="dotNetCourse" />
+					<ref bean="androidCourse" />
+				</set>
+			</property>
+			<!--
+			<property name="courseTrainers">
+				<map>
+					<entry key-ref="coreJavaCourse" value-ref="sanjay" />
+					<entry key-ref="advancedJavaCourse" value-ref="sanjay" />
+					<entry key-ref="struts2Course" value-ref="sanjay" />
+					<entry key-ref="hibernateCourse" value-ref="prafull" />
+				</map>
+			</property>
+			-->
+		</bean>
+
+		<bean id="mikado1" class="com.mikadosolutions.training.spring.di.MikadoSolutions"
+			  factory-method="getMikadoSolutions" >
+			<property name="trainers">
+				<list>
+					<ref bean="sanjay" />
+					<ref bean="prafull" />
+					<ref bean="pankaj" />
+					<ref bean="pankaj" />
+					<ref bean="ajay" />
+				</list>
+			</property>
+			<property name="courses">
+				<set>
+					<ref bean="coreJavaCourse" />
+					<ref bean="advancedJavaCourse" />
+					<ref bean="struts2Course" />
+					<ref bean="hibernateCourse" />
+					<ref bean="ejb3Course" />
+					<ref bean="dotNetCourse" />
+					<ref bean="androidCourse" />
+				</set>
+			</property>
+			<!--
+			<property name = "courseTrainers">
+				<map>
+					<entry key-ref = "coreJavaCourse" value-ref = "sanjay" />
+					<entry key-ref = "advancedJavaCourse" value-ref = "sanjay" />
+					<entry key-ref = "struts2Course" value-ref = "sanjay" />
+					<entry key-ref = "hibernateCourse" value-ref = "prafull" />
+				</map>
+			</property>
+			-->
+		</bean>
+
+		<bean id="trainingWorkshop" class="com.mikadosolutions.training.spring.di.TrainingWorkshop"
+			p:trainingCompany-ref="mikado" />
+
+		<!-- autowiring done with byName
+		<bean id="trainingWorkshop" class="com.mikadosolutions.training.spring.di.TrainingWorkshop"
+		  autowire="byName"/>
+		-->
+
+		<!-- autowiring done with byType
+		<bean id="trainingWorkshop" class="com.mikadosolutions.training.spring.di.TrainingWorkshop"
+		  autowire="byType"/>
+		-->
+
+		<!-- autowiring done with constructor
+		<bean id="trainingWorkshop" class="com.mikadosolutions.training.spring.di.TrainingWorkshop"
+		  autowire="constructor" />
+		-->
+
+		<bean id="trainer" abstract="true">
+			<constructor-arg index="1">
+				<set>
+					<value>Core Java</value>
+					<value>Advanced Java</value>
+				</set>
+			</constructor-arg>
+		</bean>
+
+		<bean id="home" class="com.mikadosolutions.training.spring.di.Home" scope="prototype" />
+
+		<bean id="lodha" class="com.mikadosolutions.training.spring.di.LodhaDevelopers">
+			<lookup-method name="getHome" bean="home" />
+		</bean>
+
+</beans>
